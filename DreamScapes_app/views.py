@@ -11,21 +11,21 @@ def index(request):
 
 def sounds(request):
     all_sounds = Sound.objects.all()
-    latest_sounds = Sound.objects.all().order_by('-created_at')[:20]  # show last added 20 sounds
+    new_sounds = Sound.objects.all().order_by('-created_at')[:20]  # show last added 20 sounds
     categories = Category.objects.all()
-    return render(request, 'sounds.html', {'all_sounds': all_sounds, 'latest_sounds': latest_sounds, 'categories': categories})
+    return render(request, 'sounds.html', {'all_sounds': all_sounds, 'new_sounds': new_sounds, 'categories': categories})
 
 def user_profile(request):
     mixes = UserMix.objects.filter(user=request.user)
     return render(request, 'profile.html', {'mixes': mixes})
 
-def other_users_mixes(request):
+def users_mixes(request):
     mixes = UserMix.objects.exclude(user=request.user)
     return render(request, 'users_mixes.html', {'mixes': mixes})
 
 
 # --------------------- REGISTRATION, LOGIN, LOGOUT ---------------------
-def user_signup(request):
+def user_register(request):
     print("******************** User Registration *******************")
     try:
         if request.method == 'POST':
