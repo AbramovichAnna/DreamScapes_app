@@ -25,23 +25,23 @@ def users_mixes(request):
 
 
 # --------------------- REGISTRATION, LOGIN, LOGOUT ---------------------
-def user_register(request):
-    print("******************** User Registration *******************")
-    try:
-        if request.method == 'POST':
-            username = request.POST.get('username')
-            password = request.POST.get('password')
-            profile_picture = request.FILES.get('profile_picture')
-            date_of_birth = request.POST.get('date_of_birth')
-            print("date_of_birth = ", date_of_birth)
-            print(f"username : {username} \n passowrd : {password}")    
-            user = DreamUser.objects.create_user(username=username, password=password, date_of_birth=date_of_birth, profile_picture=profile_picture)
-            user.save()
-            messages.success(request, f"Hurray! {user.username} is now registered. Please login to continue.")
-    except Exception as e:
-        print(f"******************* Error occured ******************\n{e}\n")
-        messages.error(request, f"A user account with the username {username} already exists. Please try again with a different username.")
-    return render(request, 'index.html')
+# def user_register(request):
+#     print("******************** User Registration *******************")
+#     try:
+#         if request.method == 'POST':
+#             username = request.POST.get('username')
+#             password = request.POST.get('password')
+#             profile_picture = request.FILES.get('profile_picture')
+#             date_of_birth = request.POST.get('date_of_birth')
+#             print("date_of_birth = ", date_of_birth)
+#             print(f"username : {username} \n passowrd : {password}")    
+#             user = DreamUser.objects.create_user(username=username, password=password, date_of_birth=date_of_birth, profile_picture=profile_picture)
+#             user.save()
+#             messages.success(request, f"Hurray! {user.username} is now registered. Please login to continue.")
+#     except Exception as e:
+#         print(f"******************* Error occured ******************\n{e}\n")
+#         messages.error(request, f"A user account with the username {username} already exists. Please try again with a different username.")
+#     return render(request, 'index.html')
 
 def user_login(request):
     print("********************* User Login ********************")
@@ -56,16 +56,35 @@ def user_login(request):
             # If the credentials are correct, log in the user
             login(request, user)
             print(f"User {user} successfully logged in\n************* Redirecting to index page *************")
-            messages.success(request, f"Wlecome back {user.username}!")
+            messages.success(request, f"Welcome back {user.username}!")
             return redirect('index')
         else:
             print(f"**************** !!! Login Failed !!! ***************")
             # If authentication fails, show an error message or redirect back to the login page
-            messages.error(request, "Login Failed. Incorrect username or password. Please try again.")
-            # return redirect('index')
+            messages.error(request, "Incorrect username or password. Please try again.")
+            return render(request, 'signup.html')
     return render(request, 'index.html')
 
 def user_logout(request):
     print("******************* User logged out *******************")
     logout(request)
     return redirect('index')
+
+
+def user_signup(request):
+    print("******************** User Registration *******************")
+    try:
+        if request.method == 'POST':
+            username = request.POST.get('username')
+            password = request.POST.get('password')
+            profile_picture = request.FILES.get('profile_picture')
+            date_of_birth = request.POST.get('date_of_birth')
+            print(f"username : {username} \n passowrd : {password}")    
+            user = DreamUser.objects.create_user(username=username, password=password, date_of_birth=date_of_birth, profile_picture=profile_picture)
+            user.save()
+            messages.success(request, f"Hurray! {user.username} is now registered. Please login to continue.")
+    except Exception as e:
+        print(f"******************* Error occured ******************\n{e}\n")
+        messages.error(request, f"A user account with the username {username} already exists. Please try again with a different username.")
+    return render(request, 'signup.html')
+
