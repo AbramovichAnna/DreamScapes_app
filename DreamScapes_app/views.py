@@ -25,23 +25,6 @@ def users_mixes(request):
 
 
 # --------------------- REGISTRATION, LOGIN, LOGOUT ---------------------
-# def user_register(request):
-#     print("******************** User Registration *******************")
-#     try:
-#         if request.method == 'POST':
-#             username = request.POST.get('username')
-#             password = request.POST.get('password')
-#             profile_picture = request.FILES.get('profile_picture')
-#             date_of_birth = request.POST.get('date_of_birth')
-#             print("date_of_birth = ", date_of_birth)
-#             print(f"username : {username} \n passowrd : {password}")    
-#             user = DreamUser.objects.create_user(username=username, password=password, date_of_birth=date_of_birth, profile_picture=profile_picture)
-#             user.save()
-#             messages.success(request, f"Hurray! {user.username} is now registered. Please login to continue.")
-#     except Exception as e:
-#         print(f"******************* Error occured ******************\n{e}\n")
-#         messages.error(request, f"A user account with the username {username} already exists. Please try again with a different username.")
-#     return render(request, 'index.html')
 
 def user_login(request):
     print("********************* User Login ********************")
