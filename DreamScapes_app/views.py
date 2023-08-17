@@ -15,7 +15,7 @@ def sounds(request):
     categories = Category.objects.all()
     return render(request, 'sounds.html', {'all_sounds': all_sounds, 'new_sounds': new_sounds, 'categories': categories})
 
-def user_profile(request):
+def user_profile(request): 
     mixes = UserMix.objects.filter(user=request.user)
     return render(request, 'profile.html', {'mixes': mixes})
 
