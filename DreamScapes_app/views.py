@@ -68,6 +68,9 @@ def user_signup(request):
             messages.success(request, f"Hurray! {user.username} is now registered. Please login to continue.")
     except Exception as e:
         print(f"******************* Error occured ******************\n{e}\n")
-        messages.error(request, f"A user account with the username {username} already exists. Please try again with a different username.")
+        if 'UNIQUE constraint' in str(e):
+            messages.error(request, f"A user account with the username {username} already exists. Please try again with a different username.")
+        else:
+            messages.error(request, f"Something went wrong. Please try again.")
     return render(request, 'signup.html')
 
