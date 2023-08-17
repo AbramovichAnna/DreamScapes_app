@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+<head>
+<link href="{% static 'DreamScapes_app/css/users_mixes.css' %}" rel="stylesheet" type="text/css">
+</head>
+
+<div class="main-container">
+
+    <!-- Display all users' mixes -->
+    <div class="users-mixes-display">
+        {% for mix in mixes %}
+            <div class="mix-item">
+                <h3>{{ mix.title }}</h3>
+                <ul>
+                    {% for sound in mix.sounds.all %}
+                        <li>{{ sound.title }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endfor %}
+    </div>
+
+</div> <!-- End of Main Container -->
+
+{% endblock %}

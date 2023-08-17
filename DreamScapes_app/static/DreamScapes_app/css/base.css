@@ -1,0 +1,170 @@
+/* General Styles */
+* {
+    box-sizing: border-box;
+    font-family:  "Gloria Hallelujah", cursive;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Navigation Styles */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 50px;
+    background-color: transparent;
+
+}
+
+.nav-left,
+.nav-right {
+    display: flex;
+    align-items: center;
+}
+
+.nav-left a,
+.nav-right a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.nav-left a:hover,
+.nav-right a:hover {
+    background-color: #232456;
+}
+
+.logo img {
+    width: 100px;
+    /* Adjust as needed */
+}
+
+.profile-info {
+    display: flex;
+    align-items: center;
+    position: relative;
+    color: #fff;
+}
+
+.profile-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+    border: #fff 2px solid;
+}
+
+.dropdown-menu {
+    display: none;
+    /* Initially hide the dropdown */
+    position: absolute;
+    top: 100%;
+    padding-top: 20px;
+    /* Position it just below the toggler */
+    left: -10px;
+    z-index: 1000;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+
+.dropdown-menu a {
+    display: block;
+    padding: 10px 20px;
+    color: #333;
+    text-decoration: none;
+    transition: background-color 0.3s;
+
+}
+
+.dropdown-menu a:hover {
+    background-color: #f0f0f0;
+}
+
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+button {
+    cursor: pointer;
+}
+/* -----------------------MOdals------------------------- */
+/* Common Styles */
+.modal-content {
+    border-radius: 20px;
+    border: none;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.modal-header h2 {
+    margin-bottom: 0;
+}
+
+/* Error Modal Styles */
+.error-modal-header {
+    background-color: #ffcccc; /* Light red background */
+    border-bottom: 1px solid #f08080; /* Slightly darker red border */
+    color: #b30000; /* Darker red text color */
+}
+
+.modal#errorModal .modal-content {
+    background-color: #ffe6e6; /* Very light red background */
+}
+
+.modal#errorModal .btn-close {
+    color: #b30000; /* Darker red for close icon */
+}
+
+.modal#errorModal .btn-close:hover {
+    background-color: #f08080; /* Slightly darker red for hover background */
+    color: white; /* White color on hover */
+}
+
+/* Success Modal Styles */
+.success-modal-header {
+    background-color: #d4edda; /* Light green background */
+    border-bottom: 1px solid #c3e6cb; /* Slightly darker green border */
+    color: #155724; /* Dark green text color */
+}
+
+.modal#successModal .modal-content {
+    background-color: #e6ffe6; /* Very light green background */
+}
+
+
+.modal#successModal .btn-close {
+    color: #155724; /* Dark green for close icon */
+}
+
+.modal#successModal .btn-close:hover {
+    background-color: #c3e6cb; /* Slightly darker green for hover background */
+    color: white; /* White color on hover */
+}
+
+.modal#successModal .btn-secondary {
+    color: #155724; /* Dark green text color */
+    background-color: #d4edda; /* Light green background */
+    border: 1px solid #c3e6cb; /* Slightly darker green border */
+}
+
+.modal#successModal .btn-secondary:hover {
+    background-color: #c3e6cb; /* Slightly darker green on hover */
+    border: 1px solid #b3d8bb; /* Even darker green border on hover */
+}
+

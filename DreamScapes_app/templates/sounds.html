@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+
+<link href="{% static 'DreamScapes_app/css/sounds.css' %}" rel="stylesheet" type="text/css">
+<script src="{% static 'DreamScapes_app/js/sounds.js' %}"></script>
+
+
+<div class="container">
+    <ul class="nav nav-tabs" id="categoryTabs" role="tablist">
+        <li class="nav-item" role="presentation">
+            <a class="nav-link active" id="all_tab" data-toggle="tab" href="#all" role="tab" aria-controls="all">All</a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link" id="new-tab" data-toggle="tab" href="#new" role="tab" aria-controls="new">New</a>
+        </li>
+        {% for category in categories %}
+        <li class="nav-item" role="presentation">
+            <a class="nav-link" id="category-{{ category.id }}-tab" data-toggle="tab" href="#category-{{ category.id }}"
+                role="tab" aria-controls="category-{{ category.id }}">{{ category.name }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+    <hr>
+    
+    
+    
+    <div class="tab-content" id="categoryTabsContent">
+    
+        <!-- All Sounds Tab -->
+        <div class="tab-pane active" id="all" role="tabpanel">
+            <div class="row">
+                {% for sound in all_sounds %}
+                <div class="card" data-audio-src="{{ sound.file.url }}">
+                    <div class="card-header">{{sound.title}}</div>
+                    <div class="card-main">
+                        {%if sound.icon %}
+                        <img class="sound-icons" src="{{ sound.icon.url }}" alt="{{ sound.title }}">
+                        {% else %}
+                        <p>no icon</p>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    
+    
+        <!-- New Sounds Tab -->
+        <div class="tab-pane" id="new" role="tabpanel">
+            <div class="row">
+                {% for sound in new_sounds %}
+                <div class="card" data-audio-src="{{ sound.file.url }}">
+                    <div class="card-header">{{sound.title}}</div>
+                    <div class="card-main">
+                        {%if sound.icon %}
+                        <img class="sound-icons" src="{{ sound.icon.url }}" alt="{{ sound.title }}">
+                        {% else %}
+                        <p>no icon</p>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    
+        <!-- Categories Tabs -->
+        {% for category in categories %}
+        <div class="tab-pane" id="category-{{ category.id }}" role="tabpanel">
+            <div class="row">
+                {% for sound in category.sound_set.all %}
+                <div class="card" data-audio-src="{{ sound.file.url }}">
+                    <div class="card-header">{{sound.title}}</div>
+                    <div class="card-main">
+                        {%if sound.icon %}
+                        <img class="sound-icons" src="{{ sound.icon.url }}" alt="{{ sound.title }}">
+                        {% else %}
+                        <p>no icon</p>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    
+    
+    {% endblock %}
+

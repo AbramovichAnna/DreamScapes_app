@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+
+<!-- Loading Bootstrap JS & Custom CSS -->
+<!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/js/bootstrap.min.js'></script> -->
+<link href="{% static 'DreamScapes_app/css/index.css' %}" rel="stylesheet" type="text/css">
+
+<div class="container-fluid">
+
+    <!-- Intro Section -->
+    <section id="intro" class="mb-5">
+        <h1 class="text-center">Welcome to DreamScapes</h1>
+        <p class="text-center">Dive into a collection of nature sounds and ambient melodies. </p>
+        <p class="text-center">Mix, match, and create your personal oasis of calm. </p>
+    </section>
+
+    <!-- Image Section -->
+    <section id="image-section" class="mb-3">
+        <div class="row">
+            <div class="col-md-2 offset-md-1">
+                <img class="img-fluid" src="{% static 'DreamScapes_app/images/index_sleep.png' %}" alt="Description of Image 1">
+                <div class="text-center mt-2">Sleep in Serene Melodies</div>
+            </div>
+            <div class="col-md-2 offset-md-2">
+                <img class="img-fluid" src="{% static 'DreamScapes_app/images/index_wakeup.png' %}" alt="Description of Image 2">
+                <div class="text-center mt-2">Wake Up to Renewed Energy</div>
+            </div>
+            <div class="col-md-2 offset-md-2">
+                <img class="img-fluid" src="{% static 'DreamScapes_app/images/index_relax.png' %}" alt="Description of Image 3">
+                <div class="text-center mt-2">Relax with Nature's Symphony</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="text-center">
+        <a href="{% url 'sounds' %}" class="btn btn-primary">Get started</a>
+    </footer>
+
+</div>
+
+{% endblock %}

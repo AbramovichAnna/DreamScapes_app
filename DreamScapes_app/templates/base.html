@@ -1,0 +1,126 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    
+
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css'>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah">
+
+    <link href="{% static 'DreamScapes_app/css/base.css' %}" rel="stylesheet" type="text/css">
+
+    <title>DreamScapes</title>
+
+</head>
+
+
+{% if messages %}
+<script>
+    $(document).ready(function () {
+        {% for message in messages %}
+        {% if message.tags == 'success' %}
+        $('#successModal').modal('show');
+        {% else %}
+        $('#errorModal').modal('show');
+        {% endif %}
+        {% endfor %}
+    });
+</script>
+{% endif %}
+
+<body>
+    <nav>
+        <!-- Left Side: Logo and Links to pages -->
+        <div class="nav-left">
+            <a class="logo" href="{% url 'index' %}">
+                <img src="{% static 'DreamScapes_app/images/logo2.png' %}" alt="DreamScapes Logo">
+            </a>
+            <a href="{% url 'index' %}">HOME</a>
+            <a href="{% url 'sounds' %}">SOUNDS</a>
+            {% if user.is_authenticated %}
+            <a href="{% url 'profile' %}">PROFILE</a>
+            {% endif %}
+            <a href="{% url 'users_mixes' %}">EXPLORE MORE MIXES</a>
+        </div>
+
+        <!-- Right Side: Signup/Profile -->
+        <div class="nav-right">
+            {% if user.is_authenticated %}
+            <div class="profile-info">
+                {% if user.profile_picture %}
+                <img class="profile-pic" src="{{ user.profile_picture.url }}" alt="{{ user.username }}">
+                {% else %}
+                <img src="{% static 'DreamScapes/images/user_default.png' %}" width="40px">
+                {% endif %}
+                <button span data-toggle="dropdown">{{ user.username }}</button>
+                <div class="dropdown-menu">
+                    <a href="{% url 'profile' %}">My Profile</a>
+                    <a href="{% url 'user_logout' %}"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
+                </div>
+            </div>
+            {% else %}
+            <a href="{% url 'user_signup' %}">
+                <i class="fa-solid fa-right-to-bracket"></i> SIGN UP</a>
+            {% endif %}
+        </div>
+    </nav>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <!-- Error Modal -->
+    <div class="modal fade" id="errorModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header error-modal-header">
+                    <h2 class="modal-title fs-5" id="staticBackdropLabel">Error</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    {% for message in messages %}
+                    {% if message.tags == 'error' %}
+                    {{ message }}
+                    {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="modal fade" id="successModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header success-modal-header">
+                    <h2 class="modal-title fs-5" id="staticBackdropLabel">Succes</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    {% for message in messages %}
+                    {% if message.tags == 'success' %}
+                    {{ message }}
+                    {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

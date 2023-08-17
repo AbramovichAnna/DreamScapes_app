@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+
+<link href="{% static 'DreamScapes_app/css/signup.css' %}" rel="stylesheet" type="text/css">
+
+
+<div class="ocean">
+    <div class="wave"></div>
+    <div class="wave"></div>
+    <div class="wave"></div>
+</div>
+
+<!-- Register(signup) Form Section -->
+
+<div class="container" id="container">
+    <div class="form-container sign-up-container">
+        <form action="{% url 'user_signup' %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <h1>Sign Up</h1>
+            <div class="social-container">
+                <a href="https://github.com/AbramovichAnna/DreamScapes_app.git" target="_blank" class="social"><i
+                        class="fab fa-github"></i></a>
+                <a href="mailto:aabramovich1@gmail.com" target="_blank" class="social"><i class="fab fa-google"></i></a>
+            </div>
+            <span>Fill this form to sign up</span>
+            <label>
+                <input type="text" name="username" placeholder="Name" />
+            </label>
+            <label>
+                <input type="date" name="date_of_birth"  style="width: 220px;" />
+            </label>
+            <label>
+                <input type="password" name="password" placeholder="Password" />
+            </label>
+            <label>
+                <input type="file" id="fileUpload" name="profile_picture" style="display: none;">
+            </label>
+            <label for="fileUpload" class="custom-file-upload">
+                <i class="fas fa-upload"></i> Upload profile picture
+            </label>
+            <button type="submit" value="signUp" style="margin-top: 9px;">Sign Up</button>
+        </form>
+    </div>
+
+    <!-- Login Form Section -->
+    <div class="form-container login-container">
+        <form action="{% url 'user_login' %}" method="POST">
+            {% csrf_token %}
+            <h1>Login</h1>
+            <div class="social-container">
+                <a href="https://github.com/AbramovichAnna/DreamScapes_app.git" target="_blank" class="social"><i
+                        class="fab fa-github"></i></a>
+                <a href="mailto:aabramovich1@gmail.com" target="_blank" class="social"><i class="fab fa-google"></i></a>
+            </div>
+            <span> Login using password </span>
+            <label>
+                <input type="text" name="username" placeholder="User name" />
+            </label>
+            <label>
+                <input type="password" name="password" placeholder="Password" />
+            </label>
+            <button type="submit" value="login" >Login</button>
+        </form>
+    </div>
+    <div class="overlay-container">
+        <div class="overlay">
+            <div class="overlay-panel overlay-left">
+                <h1>Login</h1>
+                <p>Login here if you already have an account </p>
+                <button class="ghost mt-5" id="signIn">Login</button>
+            </div>
+            <div class="overlay-panel overlay-right">
+                <h1>Create, Account!</h1>
+                <p>Sign up if you still don't have an account ... </p>
+                <button class="ghost" id="signUp">Sign Up</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/js/bootstrap.min.js'></script>
+<script src="{% static 'DreamScapes_app/js/signup.js' %}"></script>
+{% endblock %}
