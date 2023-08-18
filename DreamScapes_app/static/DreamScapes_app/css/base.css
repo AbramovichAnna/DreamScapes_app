@@ -144,6 +144,7 @@ button {
 
 .modal#successModal .modal-content {
     background-color: #e6ffe6; /* Very light green background */
+    color: #155724; /* Dark green text color */
 }
 
 
