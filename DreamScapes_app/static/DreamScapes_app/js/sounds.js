@@ -1,17 +1,29 @@
 document.addEventListener('DOMContentLoaded', function () {
 
+    let playingAudios = new Map();  // Stores the currently playing audio elements.
+
+    function setActiveStateToAllCardsWithAudioSrc(audioSrc, isActive) {
+        const cards = document.querySelectorAll(`.card[data-audio-src="${audioSrc}"]`);
+        cards.forEach(card => {
+            if (isActive) {
+                card.classList.add('active-sound');
+            } else {
+                card.classList.remove('active-sound');
+            }
+        });
+    }
+
     function toggleSound(card, audio, audioSrc) {
-        if (audio.paused) {
-            audio.play();
-            card.classList.add('active-sound');
-            localStorage.setItem('activeSound', audioSrc);
-            localStorage.setItem('isPlaying', 'true');
+        if (playingAudios.has(audioSrc)) {
+            let playingAudio = playingAudios.get(audioSrc);
+            playingAudio.pause();
+            playingAudio.currentTime = 0;
+            setActiveStateToAllCardsWithAudioSrc(audioSrc, false);
+            playingAudios.delete(audioSrc);
         } else {
-            audio.pause();
-            audio.currentTime = 0;
-            card.classList.remove('active-sound');
-            localStorage.removeItem('activeSound');
-            localStorage.setItem('isPlaying', 'false');
+            audio.play();
+            setActiveStateToAllCardsWithAudioSrc(audioSrc, true);
+            playingAudios.set(audioSrc, audio);
         }
     }
 
@@ -28,12 +40,12 @@ document.addEventListener('DOMContentLoaded', function () {
             });
 
             audio.addEventListener('ended', function() {
-                card.classList.remove('active-sound');
+                setActiveStateToAllCardsWithAudioSrc(audioSrc, false);
             });
         }
     });
 
-    // Play the sound if it was active before a refresh or navigating to another page.
+    // This is just for restoring the state of a single sound on page load.
     const activeSoundSrc = localStorage.getItem('activeSound');
     const isPlaying = localStorage.getItem('isPlaying') === 'true';
 
@@ -42,10 +54,7 @@ document.addEventListener('DOMContentLoaded', function () {
         audio.loop = true;
         audio.play();
 
-        // Mark the card corresponding to the active sound.
-        const activeCard = document.querySelector(`.card[data-audio-src="${activeSoundSrc}"]`);
-        if (activeCard) {
-            activeCard.classList.add('active-sound');
-        }
+        setActiveStateToAllCardsWithAudioSrc(activeSoundSrc, true);
+        playingAudios.set(activeSoundSrc, audio);
     }
 });
