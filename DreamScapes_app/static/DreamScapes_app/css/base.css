@@ -48,7 +48,7 @@ nav {
 
 .logo img {
     width: 100px;
-    /* Adjust as needed */
+    border-radius: 50%;
 }
 
 .profile-info {

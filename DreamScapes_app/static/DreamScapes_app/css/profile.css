@@ -7,8 +7,16 @@
 }
 
 body {
-    background-image: url('/static/DreamScapes_app/images/profile_bg.jpg');
-    color: #555555;
+    font-family: 'Open Sans', sans-serif;
+    color: aliceblue;
+    background-image: url('/static/DreamScapes_app/images/profile_bg-4.jpg');
+    background-size: cover;   /* Ensures the image covers the entire element */
+    background-repeat: no-repeat;  /* Prevents image repetition */
+    background-position: center center;  /* Centers the image */
+    background-attachment: fixed; /* This ensures the image stays fixed during scrolling */
+    height: 100vh;
+    margin: 0;
+    overflow: auto;  /* Allows content to scroll if it exceeds screen height */
 }
 
 .wrapper {
@@ -139,4 +147,18 @@ body {
 
 .wrapper .profile_counts .profile_counts_wrap .item .title {
     font-size: 14px;
+}
+
+button {
+    border-radius: 50px;
+    box-shadow: 0 1px 1px;
+    border: 1px solid #008ecf;
+    background: #008ecf;
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 12px 45px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
 }
