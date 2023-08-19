@@ -27,7 +27,7 @@ SECRET_KEY = "django-insecure-0*^d@(4gr(5^hya@b(vig2)0u9o)4drqot4o^_&5x8-iy-)0#=
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost','dreamscapes.onrender.com']
+ALLOWED_HOSTS = ['127.0.0.1','localhost','dreamscapes.onrender.com']
 
 
 # Application definition
@@ -80,13 +80,12 @@ WSGI_APPLICATION = "DreamScapes_proj.wsgi.application"
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'dreamscapes_db',
+        'NAME': 'db_dreamscapes',
         'USER': 'anna',
-        'PASSWORD': 'pPewE1qhUIyjsNT2rJgzwQkva5GjQ4Rr',
-        'HOST': 'dpg-cjfm36fut75s73cfp1i0-a.oregon-postgres.render.com',      
+        'PASSWORD': 'fWN5Fvm5m6xX585g6deb9cJPP9k6Z3cG',
+        'HOST': 'dpg-cjg947j6fquc73btvcj0-a.oregon-postgres.render.com',      
         'PORT': '5432',
     }
-
 }
 
 
