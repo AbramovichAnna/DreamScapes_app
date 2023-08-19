@@ -48,10 +48,13 @@
             </a>
             <a href="{% url 'index' %}">HOME</a>
             <a href="{% url 'sounds' %}">SOUNDS</a>
+            <a href="{% url 'mixes' %}">EXPLORE MORE MIXES</a>
             {% if user.is_authenticated %}
             <a href="{% url 'profile' %}">PROFILE</a>
+            {%else%}
+            <a href="{% url 'user_signup' %}">
+                <i class="fa-solid fa-right-to-bracket"></i> SIGN UP</a>
             {% endif %}
-            <a href="{% url 'users_mixes' %}">EXPLORE MORE MIXES</a>
         </div>
 
         <!-- Right Side: Signup/Profile -->
@@ -69,9 +72,6 @@
                     <a href="{% url 'user_logout' %}"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
                 </div>
             </div>
-            {% else %}
-            <a href="{% url 'user_signup' %}">
-                <i class="fa-solid fa-right-to-bracket"></i> SIGN UP</a>
             {% endif %}
         </div>
     </nav>

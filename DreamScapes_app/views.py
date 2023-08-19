@@ -19,9 +19,9 @@ def user_profile(request):
     mixes = UserMix.objects.filter(user=request.user)
     return render(request, 'profile.html', {'mixes': mixes})
 
-def users_mixes(request):
+def mixes(request):
     mixes = UserMix.objects.exclude(user=request.user)
-    return render(request, 'users_mixes.html', {'mixes': mixes})
+    return render(request, 'mixes.html', {'mixes': mixes})
 
 
 # --------------------- REGISTRATION, LOGIN, LOGOUT ---------------------

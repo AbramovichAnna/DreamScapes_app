@@ -21,8 +21,8 @@
                 <p class="date_of_birth"><strong>Date of Birth:</strong> {{ user.date_of_birth }}</p>
             </div>
         </div>
-        <div class="profile_skills">
-            <div class="skills">
+        <div class="user_mixes">
+            <div class="mixes">
                 {%if user.mixes%}
                 <p>Your Mixes</p>
                 {%for mix in user.mix%}
@@ -39,7 +39,6 @@
         </div>
     </div>
 </div>
-{% endif %}
 
-
+{%endif%}
 {% endblock %}

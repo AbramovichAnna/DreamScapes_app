@@ -1,26 +1,83 @@
 {% extends "base.html" %}
 {% block content %}
 {% load static %}
-<head>
-<link href="{% static 'DreamScapes_app/css/users_mixes.css' %}" rel="stylesheet" type="text/css">
-</head>
 
-<div class="main-container">
+<link href="{% static 'DreamScapes_app/css/mixes.css' %}" rel="stylesheet" type="text/css">
 
-    <!-- Display all users' mixes -->
-    <div class="users-mixes-display">
-        {% for mix in mixes %}
-            <div class="mix-item">
-                <h3>{{ mix.title }}</h3>
-                <ul>
-                    {% for sound in mix.sounds.all %}
-                        <li>{{ sound.title }}</li>
-                    {% endfor %}
-                </ul>
+<!-- Carousel of Preset Mixes -->
+    <div id="presetCarousel" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="path_to_image1.jpg" alt="Mix 1">
+                <div class="carousel-caption">
+                    <h3>Mix Title 1</h3>
+                </div>
             </div>
-        {% endfor %}
+            <!-- Repeat similar blocks for other preset mixes -->
+        </div>
     </div>
 
-</div> <!-- End of Main Container -->
+    <section class="carousel" aria-label="Gallery">
+        <ol class="carousel__viewport">
+            <li id="carousel__slide1" tabindex="0" class="carousel__slide">
+                <div class="carousel__snapper">
+                    <a href="#carousel__slide4" class="carousel__prev">Go to last slide</a>
+                    <a href="#carousel__slide2" class="carousel__next">Go to next slide</a>
+                </div>
+            </li>
+            <li id="carousel__slide2" tabindex="0" class="carousel__slide">
+                <div class="carousel__snapper"></div>
+                <a href="#carousel__slide1" class="carousel__prev">Go to previous slide</a>
+                <a href="#carousel__slide3" class="carousel__next">Go to next slide</a>
+            </li>
+            <li id="carousel__slide3" tabindex="0" class="carousel__slide">
+                <div class="carousel__snapper"></div>
+                <a href="#carousel__slide2" class="carousel__prev">Go to previous slide</a>
+                <a href="#carousel__slide4" class="carousel__next">Go to next slide</a>
+            </li>
+            <li id="carousel__slide4" tabindex="0" class="carousel__slide">
+                <div class="carousel__snapper"></div>
+                <a href="#carousel__slide3" class="carousel__prev">Go to previous slide</a>
+                <a href="#carousel__slide1" class="carousel__next">Go to first slide</a>
+            </li>
+        </ol>
+        <aside class="carousel__navigation">
+            <ol class="carousel__navigation-list">
+                <li class="carousel__navigation-item">
+                    <a href="#carousel__slide1" class="carousel__navigation-button">Go to slide 1</a>
+                </li>
+                <li class="carousel__navigation-item">
+                    <a href="#carousel__slide2" class="carousel__navigation-button">Go to slide 2</a>
+                </li>
+                <li class="carousel__navigation-item">
+                    <a href="#carousel__slide3" class="carousel__navigation-button">Go to slide 3</a>
+                </li>
+                <li class="carousel__navigation-item">
+                    <a href="#carousel__slide4" class="carousel__navigation-button">Go to slide 4</a>
+                </li>
+            </ol>
+        </aside>
+    </section>
+
+
+<!-- User Mixes -->
+<div class="user-mixes">
+    <h2>User Mixes</h2>
+    <div class="user-mix">
+        <h3>User Name 1</h3>
+        <img src="path_to_user_mix_image1.jpg" alt="User Mix 1" onclick="playMix('mix1')">
+        <p>Mix Name 1</p>
+    </div>
+    <!-- Repeat similar blocks for other user mixes -->
+</div>
+
+<script>
+    function playMix(mixName) {
+        // Logic to play the selected mix
+        alert('Playing ' + mixName);
+    }
+</script>
+
+
 
 {% endblock %}

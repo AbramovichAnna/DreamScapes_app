@@ -22,9 +22,9 @@
         {% endfor %}
     </ul>
     <hr>
-    
+
     <div class="tab-content" id="categoryTabsContent">
-    
+
         <!-- All Sounds Tab -->
         <div class="tab-pane active" id="all" role="tabpanel">
             <div class="row">
@@ -42,7 +42,7 @@
                 {% endfor %}
             </div>
         </div>
-    
+
         <!-- New Sounds Tab -->
         <div class="tab-pane" id="new" role="tabpanel">
             <div class="row">
@@ -60,7 +60,7 @@
                 {% endfor %}
             </div>
         </div>
-    
+
         <!-- Categories Tabs -->
         {% for category in categories %}
         <div class="tab-pane" id="category-{{ category.id }}" role="tabpanel">
@@ -77,10 +77,35 @@
                     </div>
                 </div>
                 {% endfor %}
-            </div>-21po        </div>
+            </div>
+        </div>
         {% endfor %}
     </div>
-    
-    
+
+    <footer class="sound-controls">
+        <button id="playPause">
+            <span class="icon">&#9658;</span> <!-- Play icon-->
+            Play
+        </button>
+        <button id="saveMix">
+            <span class="icon">&#9829;</span> <!-- Heart icon -->
+            Save Mix
+        </button>
+        <input type="range" id="volume" min="0" max="1" step="0.1"> <!-- Volume slider -->
+        <button id="mixer">
+            <span class="icon">&#128248;</span> <!-- Mixer icon -->
+        </button>
+    </footer>
+
     {% endblock %}
 
+
+    <div id="mixerModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Playing Sounds</h2>
+            <!-- List of playing sounds will be populated here using JavaScript -->
+            <div id="playingSoundsList"></div>
+        </div>
+    </div>
+    

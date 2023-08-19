@@ -8,7 +8,7 @@
 
 body {
     font-family: 'Open Sans', sans-serif;
-    color: aliceblue;
+    color: rgb(255, 255, 255);
     background-image: url('/static/DreamScapes_app/images/profile_bg-4.jpg');
     background-size: cover;   /* Ensures the image covers the entire element */
     background-repeat: no-repeat;  /* Prevents image repetition */
@@ -30,13 +30,13 @@ body {
 }
 
 .wrapper .profile {
-    width: 400px;
+    width: 600px;
     margin-right: 25px;
 }
 
 .wrapper .profile .profile_img_info {
     display: flex;
-    background: #fff;
+    background: #0a3972cb;
     border-radius: 10px;
     margin-bottom: 25px;
 }
@@ -67,38 +67,38 @@ body {
     font-weight: 300;
 }
 
-.wrapper .profile .profile_skills {
-    background: #fff;
+.wrapper .profile .user_mixes {
+    background: #0a3972cb;
     border-radius: 10px;
     padding: 25px;
 }
 
-.wrapper .profile .profile_skills .skills {
+.wrapper .profile .user_mixes .mixes {
     padding-bottom: 20px;
     border-bottom: 1px solid #cccccc;
 }
 
-.wrapper .profile .profile_skills .skills p {
+.wrapper .profile .user_mixes .mixes p {
     text-transform: uppercase;
     font-weight: 700;
     font-size: 14px;
     margin-bottom: 10px;
 }
 
-.wrapper .profile .profile_skills .skills ul li {
+.wrapper .profile .user_mixes .mixes ul li {
     font-size: 30px;
     margin-bottom: 5px;
 }
 
-.wrapper .profile .profile_skills .skills ul li .fab {
+.wrapper .profile .user_mixes .mixes ul li .fab {
     width: 40px;
 }
 
-.wrapper .profile .profile_skills .tags_wrap {
+.wrapper .profile .user_mixes .tags_wrap {
     padding-top: 20px;
 }
 
-.wrapper .profile .profile_skills .tags_wrap span.tag {
+.wrapper .profile .user_mixes .tags_wrap span.tag {
     background: #e4e9ef;
     padding: 10px 15px;
     display: inline-block;
@@ -137,7 +137,7 @@ body {
 }
 
 .wrapper .profile_counts .profile_counts_wrap .item:hover {
-    background: #e4e9ef;
+    background: #09274a7b7b;
 }
 
 .wrapper .profile_counts .profile_counts_wrap .item .fas {
@@ -154,7 +154,7 @@ button {
     box-shadow: 0 1px 1px;
     border: 1px solid #008ecf;
     background: #008ecf;
-    color: #555555;
+    color: #ffffff;
     font-size: 12px;
     font-weight: bold;
     padding: 12px 45px;

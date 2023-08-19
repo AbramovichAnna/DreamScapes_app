@@ -58,3 +58,29 @@ document.addEventListener('DOMContentLoaded', function () {
         playingAudios.set(activeSoundSrc, audio);
     }
 });
+
+
+const mixerModal = document.getElementById('mixerModal');
+const closeBtn = document.querySelector('.close-btn');
+const mixerBtn = document.getElementById('mixer');
+
+// Function to show the modal
+mixerBtn.addEventListener('click', function() {
+    // Populate the list of playing sounds here if needed
+    // Example: document.getElementById('playingSoundsList').innerHTML = 'Sound 1, Sound 2, ...';
+
+    // Show the modal
+    mixerModal.style.display = 'block';
+});
+
+// Function to close the modal
+closeBtn.addEventListener('click', function() {
+    mixerModal.style.display = 'none';
+});
+
+// Close the modal when clicking outside the modal content
+window.addEventListener('click', function(event) {
+    if (event.target === mixerModal) {
+        mixerModal.style.display = 'none';
+    }
+});
