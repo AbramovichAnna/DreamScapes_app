@@ -25,7 +25,8 @@ AUTH_USER_MODEL = "DreamScapes_app.DreamUser"
 SECRET_KEY = "django-insecure-0*^d@(4gr(5^hya@b(vig2)0u9o)4drqot4o^_&5x8-iy-)0#="
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
+
 
 ALLOWED_HOSTS = ['127.0.0.1','localhost','dreamscapes.onrender.com']
 

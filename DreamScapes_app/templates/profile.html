@@ -4,7 +4,6 @@
 
 <link href="{% static 'DreamScapes_app/css/profile.css' %}" rel="stylesheet" type="text/css">
 
-
 {% if user.is_authenticated %}
 <div class="card">
     <!-- ----------------------------profile info-------------------------------- -->
@@ -20,9 +19,16 @@
             {% if user_mixes %}
             {% for mix in user_mixes %}
             <div class="col">
-                <div class="mix-item" style="background-image: url('{{ mix.background_image.url }}');">
+                <div class="mix-item">
                     <hr>
-                    <div class="mix-title">{{ mix.title }}</div>
+                    <!-- Edit Mix Link -->
+                    <a class="action-icon edit-icon" href="{% url 'edit_mix' mix.id %}"><i class="fa fa-edit"></i></a>
+                    <span>{{ mix.title }}</span>
+                    <!-- Delete Mix Form -->
+                    <form method="post" action="{% url 'delete_mix' mix.id %}" onsubmit="return confirm('Are you sure you want to delete this mix?');">
+                        {% csrf_token %}
+                        <button class="action-icon delete-icon" type="submit"><i class="fa fa-trash"></i></button>
+                    </form>
                     <hr>
                     <ul class="mix-sounds">
                         {% for sound in mix.sounds.all %}
@@ -37,11 +43,6 @@
             {% endif %}
         </div>
     </div>
-    
 </div>
-{%endif%}
+{% endif %}
 {% endblock %}
-
-
-
-

@@ -1,10 +1,8 @@
 from django.shortcuts import render, redirect
 from .models import Sound, UserMix, Category, DreamUser
 from django.contrib import messages
-from django.contrib.auth import authenticate, login, logout
-from django.http import HttpResponseRedirect, JsonResponse
-from django.views.decorators.csrf import csrf_exempt
-from django.utils.decorators import method_decorator
+from django.contrib.auth import authenticate, login, logout 
+from django.shortcuts import get_object_or_404
 
 
 # ------------------------------- VIEWS ------------------------------
@@ -93,7 +91,6 @@ def user_signup(request):
 
 
 # --------------------- MIXES ---------------------
-
 from django.db import transaction
 
 def save_user_mix(request):
@@ -133,3 +130,61 @@ def save_user_mix(request):
         messages.error(request,"Something went wrong. Please try again.")
         print(f"******************* Error occured ******************\n{e}\n")
         return render(request, 'sounds.html', {'error': True,})
+    
+
+# ------------------------- DELETE MIX
+
+def delete_mix(request, mix_id):
+    # Ensure the user is authenticated
+    if not request.user.is_authenticated:
+        messages.error(request, "Please login to delete a mix.")
+        return redirect('signup')
+
+    # Fetch the mix object
+    mix = get_object_or_404(UserMix, pk=mix_id)
+
+    # Ensure the user is the owner of the mix
+    if mix.user != request.user:
+        messages.error(request, "You don't have permission to delete this mix.")
+        return redirect('profile')
+
+    # Delete the mix
+    mix.delete()
+    messages.success(request, "Mix successfully deleted.")
+    return redirect('profile')
+
+# -------------------- edit MIX
+
+def edit_mix(request, mix_id):
+    # Ensure the user is authenticated
+    if not request.user.is_authenticated:
+        messages.error(request, "Please login to edit a mix.")
+        return redirect('signup')
+
+    # Fetch the mix object
+    mix = get_object_or_404(UserMix, pk=mix_id)
+
+    # Ensure the user is the owner of the mix
+    if mix.user != request.user:
+        messages.error(request, "You don't have permission to edit this mix.")
+        return redirect('profile')
+
+    # Handle POST request (form submission)
+    if request.method == 'POST':
+        sound_ids_to_keep = request.POST.getlist('sound_ids[]')
+
+        # Update the many-to-many relationship to only keep selected sounds
+        sounds_to_keep = Sound.objects.filter(id__in=sound_ids_to_keep)
+        mix.sounds.clear()
+        mix.sounds.add(*sounds_to_keep)
+
+        messages.success(request, "Mix successfully edited.")
+        return redirect('profile')
+
+    # Handle GET request (display the form)
+    selected_sounds = mix.sounds.all()
+    context = {
+        'mix': mix,
+        'selected_sounds': selected_sounds,
+    }
+    return render(request, 'edit_mix.html', context)
