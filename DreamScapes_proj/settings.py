@@ -91,7 +91,7 @@ DATABASES = {
     #     'HOST': 'dpg-cjg947j6fquc73btvcj0-a.oregon-postgres.render.com',      
     #     'PORT': '5432',
     }
-}
+
 
 
 # Password validation
