@@ -25,7 +25,7 @@ AUTH_USER_MODEL = "DreamScapes_app.DreamUser"
 SECRET_KEY = "django-insecure-0*^d@(4gr(5^hya@b(vig2)0u9o)4drqot4o^_&5x8-iy-)0#="
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 
 ALLOWED_HOSTS = ['127.0.0.1','localhost','https://dreamscapes.onrender.com/']
@@ -83,7 +83,6 @@ DATABASES = {
         "ENGINE": "django.db.backends.sqlite3",
         "NAME": BASE_DIR / "db.sqlite3",
     }
-    
     # 'default': {
     #     'ENGINE': 'django.db.backends.postgresql_psycopg2',
     #     'NAME': 'db_dreamscapes',
@@ -93,7 +92,6 @@ DATABASES = {
     #     'PORT': '5432',
     # }
 }
-
 
 
 # Password validation
