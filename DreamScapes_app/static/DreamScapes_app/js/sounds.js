@@ -1,34 +1,83 @@
 document.addEventListener('DOMContentLoaded', function () {
+    const playingAudios = new Map();
 
-    let playingAudios = new Map();  // Stores the currently playing audio elements.
-
-    function setActiveStateToAllCardsWithAudioSrc(audioSrc, isActive) {
-        const cards = document.querySelectorAll(`.card[data-audio-src="${audioSrc}"]`);
-        cards.forEach(card => {
-            if (isActive) {
-                card.classList.add('active-sound');
-            } else {
-                card.classList.remove('active-sound');
-            }
-        });
-    }
-
+    // Toggle playback of a sound when a card is clicked.
     function toggleSound(card, audio, audioSrc) {
-        if (playingAudios.has(audioSrc)) {
-            let playingAudio = playingAudios.get(audioSrc);
-            playingAudio.pause();
-            playingAudio.currentTime = 0;
-            setActiveStateToAllCardsWithAudioSrc(audioSrc, false);
-            playingAudios.delete(audioSrc);
-        } else {
+        if (audio.paused) {
             audio.play();
-            setActiveStateToAllCardsWithAudioSrc(audioSrc, true);
-            playingAudios.set(audioSrc, audio);
+            card.classList.add('active-sound');
+            addToCurrentMix(audioSrc);
+        } else {
+            audio.pause();
+            audio.currentTime = 0;
+            card.classList.remove('active-sound');
+            removeFromCurrentMix(audioSrc);
         }
     }
 
-    const soundCards = document.querySelectorAll('.card');
+    // Add a sound card to the "Current Mix" section.
+    function addToCurrentMix(audioSrc) {
+        const currentMixRow = document.getElementById('current-mix-row');
+        const originalCard = document.querySelector(`.card[data-audio-src="${audioSrc}"]`);
+        if (originalCard) {
+            const cardClone = originalCard.cloneNode(true);
+            currentMixRow.appendChild(cardClone);
 
+            const audioClone = new Audio(audioSrc);
+            audioClone.loop = true;
+            cardClone.addEventListener('click', function () {
+                toggleSound(cardClone, audioClone, audioSrc);
+            });
+        }
+    }
+
+    // Remove a sound card from the "Current Mix" section.
+    function removeFromCurrentMix(audioSrc) {
+        const currentMixRow = document.getElementById('current-mix-row');
+        const cardToRemove = currentMixRow.querySelector(`.card[data-audio-src="${audioSrc}"]`);
+        if (cardToRemove) {
+            currentMixRow.removeChild(cardToRemove);
+        }
+    }
+    //  Save current mix
+    function saveCurrentMix(mixId) {
+        const activeSoundCards = document.querySelectorAll('.card.active-sound');
+        const soundIds = [...activeSoundCards].map(card => card.getAttribute('data-sound-id'));
+
+        // Update the hidden sound fields in the save mix modal.
+        const hiddenSoundFields = document.getElementById('hiddenSoundFields');
+        hiddenSoundFields.innerHTML = ''; // Clear any existing inputs
+        soundIds.forEach(id => {
+            const input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = 'sound_ids[]';
+            input.value = id;
+            hiddenSoundFields.appendChild(input);
+        });
+
+        // Set the mix ID if provided.
+        if (mixId) {
+            document.getElementById('mixId').value = mixId;
+        } else {
+            document.getElementById('mixId').value = ''; // Clear the mix ID for new mixes
+        }
+
+        // Now open the modal for the user to provide a mix name.
+        $('#saveMixModal').modal('show');
+            // Check if there's an error in the response
+            if (response.error) {
+                // Show the error modal
+                $('#errorModal').modal('show');
+            } else {
+                // Show the success modal
+                $('#successModal').modal('show');
+            }
+    
+    }
+
+
+    // Attach event listeners to each sound card.
+    const soundCards = document.querySelectorAll('.card');
     soundCards.forEach(card => {
         const audioSrc = card.getAttribute('data-audio-src');
         if (audioSrc) {
@@ -39,48 +88,17 @@ document.addEventListener('DOMContentLoaded', function () {
                 toggleSound(card, audio, audioSrc);
             });
 
-            audio.addEventListener('ended', function() {
-                setActiveStateToAllCardsWithAudioSrc(audioSrc, false);
+            audio.addEventListener('ended', function () {
+                card.classList.remove('active-sound');
             });
         }
     });
 
-    // This is just for restoring the state of a single sound on page load.
-    const activeSoundSrc = localStorage.getItem('activeSound');
-    const isPlaying = localStorage.getItem('isPlaying') === 'true';
-
-    if (activeSoundSrc && isPlaying) {
-        const audio = new Audio(activeSoundSrc);
-        audio.loop = true;
-        audio.play();
-
-        setActiveStateToAllCardsWithAudioSrc(activeSoundSrc, true);
-        playingAudios.set(activeSoundSrc, audio);
-    }
-});
-
-
-const mixerModal = document.getElementById('mixerModal');
-const closeBtn = document.querySelector('.close-btn');
-const mixerBtn = document.getElementById('mixer');
-
-// Function to show the modal
-mixerBtn.addEventListener('click', function() {
-    // Populate the list of playing sounds here if needed
-    // Example: document.getElementById('playingSoundsList').innerHTML = 'Sound 1, Sound 2, ...';
-
-    // Show the modal
-    mixerModal.style.display = 'block';
-});
-
-// Function to close the modal
-closeBtn.addEventListener('click', function() {
-    mixerModal.style.display = 'none';
-});
-
-// Close the modal when clicking outside the modal content
-window.addEventListener('click', function(event) {
-    if (event.target === mixerModal) {
-        mixerModal.style.display = 'none';
-    }
+    // Add event listener for the save mix button.
+    document.getElementById('saveMix').addEventListener('click', function () {
+        // Call saveCurrentMix without mixId when the save mix button is clicked.
+        // If you want to update an existing mix, you'd call saveCurrentMix with the appropriate mixId.
+        saveCurrentMix();
+        
+    });
 });

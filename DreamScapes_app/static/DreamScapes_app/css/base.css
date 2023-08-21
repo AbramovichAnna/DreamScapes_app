@@ -1,4 +1,4 @@
-/* General Styles */
+/*-------------------------General Styles-------------------------*/
 * {
     box-sizing: border-box;
     font-family:  "Gloria Hallelujah", cursive;
@@ -15,7 +15,7 @@ body {
     padding: 20px;
 }
 
-/* Navigation Styles */
+/*-------------------------Navigation Styles-------------------------*/
 nav {
     display: flex;
     justify-content: space-between;
@@ -101,70 +101,134 @@ nav {
 }
 
 button {
+    border-radius: 50px;
+    box-shadow: 0 1px 1px;
+    border: 1px solid #008ecf;
+    background: #092180;
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 12px 45px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
     cursor: pointer;
 }
+
+button:active {
+    transform: scale(.7);
+}
+
+button:focus {
+    outline: none;
+}
+
+button.ghost {
+    background: transparent;
+    border-color: #fff;
+}
+
 /* -----------------------MOdals------------------------- */
 /* Common Styles */
 .modal-content {
     border-radius: 20px;
     border: none;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    justify-content: center;
 }
 
 .modal-header h2 {
     margin-bottom: 0;
 }
 
-/* Error Modal Styles */
+/*-------------------------Error Modal Styles-------------------------*/
 .error-modal-header {
-    background-color: #ffcccc; /* Light red background */
-    border-bottom: 1px solid #f08080; /* Slightly darker red border */
-    color: #b30000; /* Darker red text color */
+    background-color: #fbaeae; 
+    border-bottom: 1px solid #dd6c6c;
+    color: #b30000; 
 }
 
 .modal#errorModal .modal-content {
-    background-color: #ffe6e6; /* Very light red background */
+    background-color: #ffe6e6;
 }
 
 .modal#errorModal .btn-close {
-    color: #b30000; /* Darker red for close icon */
+    color: #b30000;
 }
 
 .modal#errorModal .btn-close:hover {
-    background-color: #f08080; /* Slightly darker red for hover background */
-    color: white; /* White color on hover */
+    background-color: #f08080; 
+    color: white; 
 }
 
-/* Success Modal Styles */
+/*-------------------------Success Modal Styles------------------------- */
 .success-modal-header {
-    background-color: #d4edda; /* Light green background */
-    border-bottom: 1px solid #c3e6cb; /* Slightly darker green border */
-    color: #155724; /* Dark green text color */
+    background-color: #8eb096; 
+    border-bottom: 1px solid #c3e6cb; 
+    color: #155724; 
 }
 
 .modal#successModal .modal-content {
-    background-color: #e6ffe6; /* Very light green background */
-    color: #155724; /* Dark green text color */
+    background-color: #e6ffe6; 
+    color: #155724; 
 }
-
 
 .modal#successModal .btn-close {
-    color: #155724; /* Dark green for close icon */
+    color: #155724; 
 }
 
+
 .modal#successModal .btn-close:hover {
-    background-color: #c3e6cb; /* Slightly darker green for hover background */
-    color: white; /* White color on hover */
+    background-color: #c3e6cb; 
+    color: white; 
 }
 
 .modal#successModal .btn-secondary {
-    color: #155724; /* Dark green text color */
-    background-color: #d4edda; /* Light green background */
-    border: 1px solid #c3e6cb; /* Slightly darker green border */
+    color: #155724; 
+    background-color: #d4edda; 
+    border: 1px solid #c3e6cb; 
 }
 
 .modal#successModal .btn-secondary:hover {
-    background-color: #c3e6cb; /* Slightly darker green on hover */
-    border: 1px solid #b3d8bb; /* Even darker green border on hover */
+    background-color: #c3e6cb; 
+    border: 1px solid #b3d8bb; 
 }
 
+
+/* -------------------------Logout Modal Styles -------------------------*/
+#logoutModal .modal-header {
+    background-color: #0777ff; 
+    border-bottom: 1px solid #76d1ff; 
+    color: #021d37; 
+}
+
+#logoutModal .modal-content {
+    background-color: #5398ff; 
+    color: #001c55; 
+}
+
+#logoutModal .btn-close {
+    color: #154575; 
+}
+
+#logoutModal .btn-close:hover {
+    background-color: #b5cfe0; 
+    color: white; 
+}
+
+#logoutModal .btn-secondary {
+    color: #154575; 
+    background-color: #d1e8f0; 
+    border: 1px solid #b5cfe0; 
+}
+
+#logoutModal .btn-secondary:hover {
+    background-color: #b5cfe0; 
+    border: 1px solid #a4bfe0; 
+}
+
+.modal#logoutModal .modal-body img {
+    height: 150px;
+    align-self: center;
+    justify-self: center;
+}

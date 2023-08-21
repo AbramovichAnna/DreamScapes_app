@@ -1,9 +1,9 @@
 body {
     overflow: hidden;
-    background-image: url('/static/DreamScapes_app/images/signup_bg-3.jpg');
+    background-image: url('/static/DreamScapes_app/images/signup_bg.jpg');
     background-size: cover;
     background-repeat: no-repeat;
-    /* background-position: center; */
+    background-position: bottom center;
 }
 
 
@@ -13,25 +13,25 @@ body {
 }
 
 
-h1 {
-    font-size: 24px;
+#h1 {
+    font-size: 35px;
     font-weight: bold;
     margin: 0;
 }
 
-p {
-    font-size: 16px;
+#p {
+    font-size: 24px;
     font-weight: 100;
     line-height: 20px;
     letter-spacing: .5px;
     margin: 10px 0 20px;
 }
 
-span {
+#span {
     font-size: 16px;
 }
 
-a {
+#a {
     color: #072643;
     font-size: 15px;
     text-decoration: none;
@@ -108,7 +108,7 @@ button {
     border-radius: 50px;
     box-shadow: 0 1px 1px;
     border: 1px solid #008ecf;
-    background: #008ecf;
+    background: #092180;
     color: #fff;
     font-size: 12px;
     font-weight: bold;
@@ -116,6 +116,7 @@ button {
     letter-spacing: 1px;
     text-transform: uppercase;
     transition: transform 80ms ease-in;
+    cursor: pointer;
 }
 
 button:active {
@@ -164,7 +165,7 @@ button.ghost {
 
 .overlay {
     background: #ffffff;
-    background: linear-gradient(to right, #008ecf, #008ecf) no-repeat 0 0 / cover;
+    background: linear-gradient(to right, #008ecf, #0172a5) no-repeat 0 0 / cover;
     color: #fff;
     position: relative;
     left: -100%;
@@ -231,4 +232,3 @@ button.ghost {
 }
 
 /* waves */
-

@@ -1,4 +1,3 @@
-
 * {
     margin: 0;
     padding: 0;
@@ -7,158 +6,107 @@
 }
 
 body {
-    font-family: 'Open Sans', sans-serif;
     color: rgb(255, 255, 255);
-    background-image: url('/static/DreamScapes_app/images/profile_bg-4.jpg');
-    background-size: cover;   /* Ensures the image covers the entire element */
-    background-repeat: no-repeat;  /* Prevents image repetition */
-    background-position: center center;  /* Centers the image */
-    background-attachment: fixed; /* This ensures the image stays fixed during scrolling */
+    background-image: url('/static/DreamScapes_app/images/profile_bg.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    background-attachment: fixed;
     height: 100vh;
     margin: 0;
-    overflow: auto;  /* Allows content to scroll if it exceeds screen height */
+    overflow: auto;
 }
 
-.wrapper {
-    width: 650px;
-    height: auto;
+/* ------------------------------------------------------------------ */
+
+.card {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-radius: 30px;
+    width: 100%;
     position: absolute;
+    height: 500px;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); 
+    background-color: transparent;
+}
+
+.left-container {
+    background: #093a7ecf;
+    flex: 1;
+    max-width: 20%;
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 450px;
+    margin: 20px;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.wrapper .profile {
-    width: 600px;
-    margin-right: 25px;
+.right-container {
+    background: #093a7ecf;
+    flex: 1;
+    max-width: 80%;
+    margin: 20px;
+    border-radius: 30px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-
-.wrapper .profile .profile_img_info {
-    display: flex;
-    background: #0a3972cb;
-    border-radius: 10px;
-    margin-bottom: 25px;
-}
-
-.wrapper .profile .profile_img_info .img {
-    width: 125px;
-}
-
-.wrapper .profile .profile_img_info .img img {
-    width: 100%;
-    display: block;
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
-}
-
-.wrapper .profile .profile_img_info .info {
-    width: calc(100% - 125px);
-    padding: 40px;
-}
-
-.wrapper .profile .profile_img_info .info .name {
-    font-size: 24px;
-    font-weight: 700;
-    margin-bottom: 5px;
-}
-
-.wrapper .profile .profile_img_info .place {
-    font-weight: 300;
-}
-
-.wrapper .profile .user_mixes {
-    background: #0a3972cb;
-    border-radius: 10px;
-    padding: 25px;
-}
-
-.wrapper .profile .user_mixes .mixes {
-    padding-bottom: 20px;
-    border-bottom: 1px solid #cccccc;
-}
-
-.wrapper .profile .user_mixes .mixes p {
-    text-transform: uppercase;
-    font-weight: 700;
-    font-size: 14px;
-    margin-bottom: 10px;
-}
-
-.wrapper .profile .user_mixes .mixes ul li {
-    font-size: 30px;
-    margin-bottom: 5px;
-}
-
-.wrapper .profile .user_mixes .mixes ul li .fab {
-    width: 40px;
-}
-
-.wrapper .profile .user_mixes .tags_wrap {
-    padding-top: 20px;
-}
-
-.wrapper .profile .user_mixes .tags_wrap span.tag {
-    background: #e4e9ef;
-    padding: 10px 15px;
-    display: inline-block;
-    border-radius: 10px;
-    margin: 5px;
-    font-size: 14px;
-}
-
-.wrapper .profile_counts {
-    background: #fff;
-    border-radius: 10px;
-    padding: 25px;
-    width: 175px;
-}
-
-.wrapper .profile_counts .profile_counts_wrap {
-    padding: 30px 0;
-    border-bottom: 1px solid #cccccc;
-}
-
-.wrapper .profile_counts .profile_counts_wrap:first-child {
-    padding-top: 0;
-}
-
-.wrapper .profile_counts .profile_counts_wrap:last-child {
-    padding-bottom: 0px;
-    border-bottom: 0px;
-}
-
-.wrapper .profile_counts .profile_counts_wrap .item {
-    padding: 20px 10px;
+.right-container h3 {
     text-align: center;
-    border-radius: 10px;
+    padding: 20px 0;
+}
+
+.left-container .profile-image {
+    width: 150px;  
+    height: 150px;
+    border-radius: 50%; 
+    display: block;
+    margin: 50px auto; /* This centers the image */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); /* Existing shadow */
+    border: 5px solid #fff; /* Existing border */
+}
+
+.right-container .row {
+    display: flex;           /* Make it a flex container */
+    flex-wrap: wrap;         /* Allow items to wrap to the next line */
+    gap: 20px;               /* Space between grid items */
+}
+
+.right-container .col {
+    flex: 1;                 /* Allow columns to grow and shrink as needed */
+    min-width: calc(33.33% - 20px);  /* This makes it a 3-column grid, adjust as needed */
+}
+
+.right-container .card {
+    width: 100%;             /* Make each card take full width of the column */
+}
+
+.mix-item {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 15px;
+    overflow: hidden;
+    height: 200px; /* Adjust height as necessary */
+    position: relative;
+}
+
+.delete-icon, .edit-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 5px 10px;
+    border-radius: 15px;
     cursor: pointer;
-    transition: all .2s ease;
+    color: #fff;
 }
 
-.wrapper .profile_counts .profile_counts_wrap .item:hover {
-    background: #09274a7b7b;
-}
-
-.wrapper .profile_counts .profile_counts_wrap .item .fas {
-    font-size: 30px;
-    margin-bottom: 20px;
-}
-
-.wrapper .profile_counts .profile_counts_wrap .item .title {
-    font-size: 14px;
-}
-
-button {
-    border-radius: 50px;
-    box-shadow: 0 1px 1px;
-    border: 1px solid #008ecf;
-    background: #008ecf;
-    color: #ffffff;
-    font-size: 12px;
-    font-weight: bold;
-    padding: 12px 45px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    transition: transform 80ms ease-in;
+.edit-icon {
+    top: 10px;
+    left: 10px;
 }

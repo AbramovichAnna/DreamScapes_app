@@ -1,16 +1,37 @@
-<div id="header" class="header">
-  <div id="nav">
-    <ul class="nav navbar-nav">
-      <li class="menuItem">
-      <a href="#home">Home</a>
-      </li>
-      <li class="menuItem">
-      <a href="#download">Download</a>
-      </li>
-      {% for category in categories %}
-      <li class="menuItem">
-      <a href="#{{category.name}}">Setup</a>
-      </li>
-      <li class="menuItem">
-      <a href="#markup">HTML</a>
-      </li>
+
+    <div class="card">
+  <div class="left-container">
+    <img src="https://cdn.pixabay.com/photo/2015/01/08/18/29/entrepreneur-593358__480.jpg" alt="Profile Image">
+    <h2 class="gradienttext">John Doe</h2>
+    <p>Web Developer</p>
+  </div>
+  <div class="right-container">
+    <h3 class="gradienttext">Profile Details</h3>
+    <table>
+        <tr>
+            <td>Name :</td>
+            <td>John Doe</td>
+          </tr>
+      <tr>
+        <td>Age :</td>
+        <td>35</td>
+      </tr>
+      <tr>
+        <td>Mobile :</td>
+        <td>+91 XXXXXXXXXX</td>
+      </tr>
+      <tr>
+        <td>Email :</td>
+        <td>john@example.com</td>
+      </tr>
+      <tr>
+        <td>Address :</td>
+        <td>123 Main St, Anytown, USA</td>
+      </tr>
+    </table>
+    <div class="credit">Made with <span style="color:tomato;font-size:20px;">❤ </span>by<a href="https://www.learningrobo.com/"> Learning Robo</a></div>
+  </div>
+</div>
+
+</body>
+</html>

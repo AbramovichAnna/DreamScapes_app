@@ -5,107 +5,145 @@
 <link href="{% static 'DreamScapes_app/css/sounds.css' %}" rel="stylesheet" type="text/css">
 <script src="{% static 'DreamScapes_app/js/sounds.js' %}"></script>
 
+<div class="content-container">
+    <div class="container">
+        <ul class="nav nav-tabs" id="categoryTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+                <a class="nav-link active" id="all_tab" data-toggle="tab" href="#all" role="tab"
+                    aria-controls="all">All</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" id="new-tab" data-toggle="tab" href="#new" role="tab" aria-controls="new">New</a>
+            </li>
+            {% for category in categories %}
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" id="category-{{ category.id }}-tab" data-toggle="tab"
+                    href="#category-{{ category.id }}" role="tab" aria-controls="category-{{ category.id }}">
+                    {{category.name }}</a>
+            </li>
+            {% endfor %}
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" id="current-mix-tab" data-toggle="tab" href="#current-mix" role="tab"
+                    aria-controls="current-mix">Current Mix</a>
+            </li>
+        </ul>
+        <hr>
 
-<div class="container">
-    <ul class="nav nav-tabs" id="categoryTabs" role="tablist">
-        <li class="nav-item" role="presentation">
-            <a class="nav-link active" id="all_tab" data-toggle="tab" href="#all" role="tab" aria-controls="all">All</a>
-        </li>
-        <li class="nav-item" role="presentation">
-            <a class="nav-link" id="new-tab" data-toggle="tab" href="#new" role="tab" aria-controls="new">New</a>
-        </li>
-        {% for category in categories %}
-        <li class="nav-item" role="presentation">
-            <a class="nav-link" id="category-{{ category.id }}-tab" data-toggle="tab" href="#category-{{ category.id }}"
-                role="tab" aria-controls="category-{{ category.id }}">{{ category.name }}</a>
-        </li>
-        {% endfor %}
-    </ul>
-    <hr>
+        <div class="tab-content" id="categoryTabsContent">
 
-    <div class="tab-content" id="categoryTabsContent">
-
-        <!-- All Sounds Tab -->
-        <div class="tab-pane active" id="all" role="tabpanel">
-            <div class="row">
-                {% for sound in all_sounds %}
-                <div class="card" data-audio-src="{{ sound.file.url }}">
-                    <div class="card-header">{{sound.title}}</div>
-                    <div class="card-main">
-                        {%if sound.icon %}
-                        <img class="sound-icons" src="{{ sound.icon.url }}" alt="{{ sound.title }}">
-                        {% else %}
-                        <p>no icon</p>
-                        {% endif %}
+            <!-- All Sounds Tab -->
+            <div class="tab-pane active" id="all" role="tabpanel">
+                <div class="row">
+                    {% for sound in all_sounds %}
+                    <div class="card" data-audio-src="{{ sound.file.url }}" data-sound-id="{{ sound.id }}">
+                        <div class="card-header">{{sound.title}}</div>
+                        <div class="card-main">
+                            {%if sound.icon %}
+                            <img class="sound-icons" src="{{ sound.icon.url }}" alt="{{ sound.title }}">
+                            {% else %}
+                            <p>no icon</p>
+                            {% endif %}
+                        </div>
                     </div>
+                    {% endfor %}
                 </div>
-                {% endfor %}
+            </div>
+
+            <!-- New Sounds Tab -->
+            <div class="tab-pane" id="new" role="tabpanel">
+                <div class="row">
+                    {% for sound in new_sounds %}
+                    <div class="card" data-audio-src="{{ sound.file.url }}" data-sound-id="{{ sound.id }}">
+                        <div class="card-header">{{sound.title}}</div>
+                        <div class="card-main">
+                            {%if sound.icon %}
+                            <img class="sound-icons" src="{{ sound.icon.url }}" alt="{{ sound.title }}">
+                            {% else %}
+                            <p>no icon</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Categories Tabs -->
+            {% for category in categories %}
+            <div class="tab-pane" id="category-{{ category.id }}" role="tabpanel">
+                <div class="row">
+                    {% for sound in category.sound_set.all %}
+                    <div class="card" data-audio-src="{{ sound.file.url }}" data-sound-id="{{ sound.id }}">
+                        <div class="card-header">{{sound.title}}</div>
+                        <div class="card-main">
+                            {%if sound.icon %}
+                            <img class="sound-icons" src="{{ sound.icon.url }}" alt="{{ sound.title }}">
+                            {% else %}
+                            <p>no icon</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+
+
+            <!-- Current Mix Tab -->
+            <div class="tab-pane" id="current-mix" role="tabpanel">
+                <div class="row" id="current-mix-row">
+                    {% for sound in currentMix.sound_set.all %}
+                    <div class="card" data-audio-src="{{ sound.file.url }}" data-sound-id="{{ sound.id }}">
+                        <div class="card-header">{{sound.title}}</div>
+                        <div class="card-main">
+                            {%if sound.icon %}
+                            <img class="sound-icons" src="{{ sound.icon.url }}" alt="{{ sound.title }}">
+                            {% else %}
+                            <p>no icon</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
             </div>
         </div>
+    </div>
+</div>
+<footer class="saveCurrentMix">
+    <button id="saveMix" data-toggle="modal" data-target="#saveMixModal">
+        <span class="icon">&#9829;</span> <!-- Heart icon -->
+        Save Current Mix
+    </button>
+</footer>
 
-        <!-- New Sounds Tab -->
-        <div class="tab-pane" id="new" role="tabpanel">
-            <div class="row">
-                {% for sound in new_sounds %}
-                <div class="card" data-audio-src="{{ sound.file.url }}">
-                    <div class="card-header">{{sound.title}}</div>
-                    <div class="card-main">
-                        {%if sound.icon %}
-                        <img class="sound-icons" src="{{ sound.icon.url }}" alt="{{ sound.title }}">
-                        {% else %}
-                        <p>no icon</p>
-                        {% endif %}
-                    </div>
+
+    <!-- Save Mix Modal -->
+    <div class="modal fade" id="saveMixModal" data-bs-backdrop="static" role="dialog" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="saveMixModalLabel">Save current mix</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                {% endfor %}
+                <div class="modal-body">
+                    <img src="{% static 'DreamScapes_app/images/save_mix.png' %}" />
+                    <form method="POST" action="{% url 'save_user_mix' %}" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <input type="hidden" name="mixId" id="mixId" value="">
+                        <div class="form-group">
+                            <label for="mixTitle">Mix Title</label>
+                            <input name="mixTitle" id="mixTitle" class="form-control"
+                                placeholder="Enter title for your mix" />
+                        </div>
+                        <div id="hiddenSoundFields"></div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-primary" value="saveMix">Save</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
-
-        <!-- Categories Tabs -->
-        {% for category in categories %}
-        <div class="tab-pane" id="category-{{ category.id }}" role="tabpanel">
-            <div class="row">
-                {% for sound in category.sound_set.all %}
-                <div class="card" data-audio-src="{{ sound.file.url }}">
-                    <div class="card-header">{{sound.title}}</div>
-                    <div class="card-main">
-                        {%if sound.icon %}
-                        <img class="sound-icons" src="{{ sound.icon.url }}" alt="{{ sound.title }}">
-                        {% else %}
-                        <p>no icon</p>
-                        {% endif %}
-                    </div>
-                </div>
-                {% endfor %}
-            </div>
-        </div>
-        {% endfor %}
     </div>
 
-    <footer class="sound-controls">
-        <button id="playPause">
-            <span class="icon">&#9658;</span> <!-- Play icon-->
-            Play
-        </button>
-        <button id="saveMix">
-            <span class="icon">&#9829;</span> <!-- Heart icon -->
-            Save Mix
-        </button>
-        <input type="range" id="volume" min="0" max="1" step="0.1"> <!-- Volume slider -->
-        <button id="mixer">
-            <span class="icon">&#128248;</span> <!-- Mixer icon -->
-        </button>
-    </footer>
-
-    {% endblock %}
-
-
-    <div id="mixerModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn">&times;</span>
-            <h2>Playing Sounds</h2>
-            <!-- List of playing sounds will be populated here using JavaScript -->
-            <div id="playingSoundsList"></div>
-        </div>
-    </div>
-    
+{% endblock %}

@@ -26,9 +26,10 @@ class Sound(models.Model):
         return self.title
 
 class UserMix(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    user = models.ForeignKey(DreamUser, on_delete=models.CASCADE)
     sounds = models.ManyToManyField(Sound)
     title = models.CharField(max_length=100)
+
 
     def __str__(self):
         return self.title

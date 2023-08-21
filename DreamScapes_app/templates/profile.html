@@ -6,39 +6,42 @@
 
 
 {% if user.is_authenticated %}
-<div class="wrapper">
-    <div class="profile">
-        <div class="profile_img_info">
-            <div class="img">
-                {% if user.profile_picture %}
-                <img src="{{ user.profile_picture.url }}" alt="profile_pic">
-                {%else%}
-                <img src="{% static 'DreamScapes_app/images/user_default.png' %}" alt="profile_pic">
-                {%endif%}
+<div class="card">
+    <!-- ----------------------------profile info-------------------------------- -->
+    <div class="left-container">
+        <img class="profile-image" src="{{ user.profile_picture.url }}" alt="profile_pic">
+        <h2>{{ user.username }}</h2>
+        <p class="date_of_birth"><strong>Date of Birth:</strong> {{ user.date_of_birth|default:"Not Provided" }}</p>
+    </div>
+    <!-- ----------------------------user_mixes-------------------------------- -->
+    <div class="right-container">
+        <h3>Your mixes</h3>
+        <div class="row">
+            {% if user_mixes %}
+            {% for mix in user_mixes %}
+            <div class="col">
+                <div class="mix-item" style="background-image: url('{{ mix.background_image.url }}');">
+                    <hr>
+                    <div class="mix-title">{{ mix.title }}</div>
+                    <hr>
+                    <ul class="mix-sounds">
+                        {% for sound in mix.sounds.all %}
+                        <li class="sound">{{ sound.title }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
             </div>
-            <div class="info">
-                <p class="name">{{ user.username }}</p>
-                <p class="date_of_birth"><strong>Date of Birth:</strong> {{ user.date_of_birth }}</p>
-            </div>
-        </div>
-        <div class="user_mixes">
-            <div class="mixes">
-                {%if user.mixes%}
-                <p>Your Mixes</p>
-                {%for mix in user.mix%}
-                <ul>
-                    <li>{{ user.mixes }}
-                        <span class="title">{{mix.title}}</span>
-                    </li>
-                </ul>
-                {%endfor%}
-                {%else%}
-                <p>Looks like You have no mixes yet!</p>
-                {%endif%}
-            </div>
+            {% endfor %}
+            {% else %}
+            <p>Looks like You have no mixes yet!</p>
+            {% endif %}
         </div>
     </div>
+    
 </div>
-
 {%endif%}
 {% endblock %}
+
+
+
+
