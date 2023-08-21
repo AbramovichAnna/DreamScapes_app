@@ -85,16 +85,6 @@ body {
     width: 100%;             /* Make each card take full width of the column */
 }
 
-/* .mix-item {
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    border-radius: 15px;
-    overflow: hidden;
-    height: 200px; 
-    position: relative;
-} */
-
 .mix-item .mix-title {
     position: absolute;
     bottom: 0;
