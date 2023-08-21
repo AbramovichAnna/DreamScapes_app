@@ -28,7 +28,7 @@ SECRET_KEY = "django-insecure-0*^d@(4gr(5^hya@b(vig2)0u9o)4drqot4o^_&5x8-iy-)0#=
 DEBUG = False
 
 
-ALLOWED_HOSTS = ['127.0.0.1','localhost','dreamscapes.onrender.com']
+ALLOWED_HOSTS = ['127.0.0.1','localhost','https://dreamscapes.onrender.com/']
 
 
 # Application definition
