@@ -52,7 +52,7 @@
             {% if user.is_authenticated %}
             <a href="{% url 'profile' %}">PROFILE</a>
             {%else%}
-            <a href="{% url 'user_signup' %}" class="button">
+            <a href="{% url 'user_signup' %}">
                 <i class="fa-solid fa-right-to-bracket"></i> SIGN UP</a>
             {% endif %}
         </div>

@@ -1,17 +1,49 @@
+
 document.addEventListener('DOMContentLoaded', function () {
     const playingAudios = new Map();
 
+    // Function to toggle the active state of all cards with a specific audio source.
+    function setActiveStateToAllCardsWithAudioSrc(audioSrc, isActive) {
+        const cards = document.querySelectorAll(`.card[data-audio-src="${audioSrc}"]`);
+        cards.forEach(card => {
+            if (isActive) {
+                card.classList.add('active-sound');
+            } else {
+                card.classList.remove('active-sound');
+            }
+        });
+    }
+
     // Toggle playback of a sound when a card is clicked.
     function toggleSound(card, audio, audioSrc) {
-        if (audio.paused) {
-            audio.play();
-            card.classList.add('active-sound');
-            addToCurrentMix(audioSrc);
-        } else {
+        // Check if the clicked card is within the "Current Mix" pane.
+        const isCurrentMixPane = card.closest('#current-mix') !== null;
+    
+        if (isCurrentMixPane) {
+            // If clicked from "Current Mix" pane, pause and reset the audio.
             audio.pause();
             audio.currentTime = 0;
-            card.classList.remove('active-sound');
+            // Mark all cards with the same audio source as inactive.
+            setActiveStateToAllCardsWithAudioSrc(audioSrc, false);
+            // Remove the audio from the "Current Mix" section.
             removeFromCurrentMix(audioSrc);
+        } else {
+            // If the audio is paused and clicked outside the "Current Mix" pane, play it.
+            if (audio.paused) {
+                audio.play();
+                // Mark all cards with the same audio source as active.
+                setActiveStateToAllCardsWithAudioSrc(audioSrc, true);
+                // Add the audio to the "Current Mix" section.
+                addToCurrentMix(audioSrc);
+            } else {
+                // If the audio is playing and clicked outside the "Current Mix" pane, pause and reset it.
+                audio.pause();
+                audio.currentTime = 0;
+                // Mark all cards with the same audio source as inactive.
+                setActiveStateToAllCardsWithAudioSrc(audioSrc, false);
+                // Remove the audio from the "Current Mix" section.
+                removeFromCurrentMix(audioSrc);
+            }
         }
     }
 
@@ -39,7 +71,7 @@ document.addEventListener('DOMContentLoaded', function () {
             currentMixRow.removeChild(cardToRemove);
         }
     }
-    //  Save current mix
+    // Save the current mix.
     function saveCurrentMix(mixId) {
         const activeSoundCards = document.querySelectorAll('.card.active-sound');
         const soundIds = [...activeSoundCards].map(card => card.getAttribute('data-sound-id'));
@@ -75,30 +107,32 @@ document.addEventListener('DOMContentLoaded', function () {
     
     }
 
-
     // Attach event listeners to each sound card.
     const soundCards = document.querySelectorAll('.card');
     soundCards.forEach(card => {
         const audioSrc = card.getAttribute('data-audio-src');
         if (audioSrc) {
-            const audio = new Audio(audioSrc);
+            // Create or retrieve the audio element associated with the audioSrc.
+            let audio = playingAudios.get(audioSrc) || new Audio(audioSrc);
             audio.loop = true;
+            // Store or update the audio element in the map.
+            playingAudios.set(audioSrc, audio);
 
+            // Add click event listener to the card to toggle its sound.
             card.addEventListener('click', function () {
                 toggleSound(card, audio, audioSrc);
             });
 
+            // If the audio ends, mark all cards with the same audio source as inactive.
             audio.addEventListener('ended', function () {
-                card.classList.remove('active-sound');
+                setActiveStateToAllCardsWithAudioSrc(audioSrc, false);
             });
         }
     });
 
     // Add event listener for the save mix button.
     document.getElementById('saveMix').addEventListener('click', function () {
-        // Call saveCurrentMix without mixId when the save mix button is clicked.
-        // If you want to update an existing mix, you'd call saveCurrentMix with the appropriate mixId.
+        // Call the saveCurrentMix function.
         saveCurrentMix();
-        
     });
 });

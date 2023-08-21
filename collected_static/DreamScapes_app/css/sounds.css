@@ -1,0 +1,143 @@
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    color: aliceblue;
+    background-image: url('/static/DreamScapes_app/images/sounds_bg-3.jpg');
+    background-size: cover;   /* Ensures the image covers the entire element */
+    background-repeat: no-repeat;  /* Prevents image repetition */
+    background-position: center center;  /* Centers the image */
+    background-attachment: fixed; /* This ensures the image stays fixed during scrolling */
+    height: 100vh;
+    margin: 0;
+    overflow: auto;  /* Allows content to scroll if it exceeds screen height */
+}
+
+.row {
+    display: grid;  /* Changed from inline-flex to grid */
+    grid-template-columns: repeat(6, 1fr);  /* If you want 6 cards in one row, adjust accordingly */
+    grid-template-rows: repeat(2, 1fr);  /* Defines two rows */
+    gap: 16px;  /* Spacing between cards */
+    grid-template-rows: repeat(auto-fill, 1fr);
+}
+
+row::-webkit-scrollbar {
+    height: 8px;
+}
+
+.row::-webkit-scrollbar-track {
+    background: rgba(0,0,0,.1);
+}
+
+.row::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,.5);
+}
+
+.card {
+    height: 100px;
+    width: 90px;
+    position: relative;
+    overflow: hidden;
+    background-color: transparent;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    transition: transform 0.3s;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    border: none;
+}
+
+.card-header {
+    text-align: center;
+    font-size: 12px;
+    font-weight: 600;
+    background-color: transparent;
+    padding: 5px 5px;
+    justify-content: center;
+}
+
+.card-main {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: top;
+    padding-top: 5px;
+    background-color: transparent;
+}
+
+.sound-icons {
+    max-height: 50%;
+    margin: 0 auto;
+}
+
+.main-description {
+    font-size: 12px;
+    text-align: center;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    /* background-color: gray; */
+}
+
+.card :active {
+    transform: scale(1.25);
+    /* optional hover effect to scale the card */
+    /* background-color: gray; */
+}
+
+.card::before {
+    content: "";
+    display: block;
+    padding-top: 50%;
+    /* 1:1 aspect ratio to make the card square */
+}
+
+/* Tab Container */
+.nav-tabs {
+    background-color: transparent;
+    border-bottom: none;
+    justify-content: space-between;
+}
+
+/* Individual Tabs */
+.nav-tabs .nav-link {
+    color: aliceblue;
+    background-color: transparent;
+    border: none;
+}
+
+.nav-tabs .nav-link.active {
+    background-color: transparent;
+    border-color: transparent;
+}
+
+.tab-content {
+    background-color: transparent;
+}
+
+.nav.nav-tabs .nav-link {
+    background-color: transparent;
+}
+
+.active-sound {
+    background-color: #07478b6a;
+    /* You can set this to any color you like */
+}
+
+button {
+    border-radius: 50px;
+    box-shadow: 0 1px 1px;
+    border: 1px solid #008ecf;
+    background: #008ecf;
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 12px 45px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+}

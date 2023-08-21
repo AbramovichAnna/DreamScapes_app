@@ -1,0 +1,234 @@
+/*-------------------------General Styles-------------------------*/
+* {
+    box-sizing: border-box;
+    font-family:  "Gloria Hallelujah", cursive;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/*-------------------------Navigation Styles-------------------------*/
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 50px;
+    background-color: transparent;
+
+}
+
+.nav-left,
+.nav-right {
+    display: flex;
+    align-items: center;
+}
+
+.nav-left a,
+.nav-right a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.nav-left a:hover,
+.nav-right a:hover {
+    background-color: #232456;
+}
+
+.logo img {
+    width: 100px;
+}
+
+.profile-info {
+    display: flex;
+    align-items: center;
+    position: relative;
+    color: #fff;
+}
+
+.profile-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+    border: #fff 2px solid;
+}
+
+.dropdown-menu {
+    display: none;
+    /* Initially hide the dropdown */
+    position: absolute;
+    top: 100%;
+    padding-top: 20px;
+    /* Position it just below the toggler */
+    left: -10px;
+    z-index: 1000;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+
+.dropdown-menu a {
+    display: block;
+    padding: 10px 20px;
+    color: #333;
+    text-decoration: none;
+    transition: background-color 0.3s;
+
+}
+
+.dropdown-menu a:hover {
+    background-color: #f0f0f0;
+}
+
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+button {
+    border-radius: 50px;
+    box-shadow: 0 1px 1px;
+    border: 1px solid #008ecf;
+    background: #092180;
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 12px 45px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+    cursor: pointer;
+}
+
+button:active {
+    transform: scale(.7);
+}
+
+button:focus {
+    outline: none;
+}
+
+button.ghost {
+    background: transparent;
+    border-color: #fff;
+}
+
+/* -----------------------MOdals------------------------- */
+/* Common Styles */
+.modal-content {
+    border-radius: 20px;
+    border: none;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    justify-content: center;
+}
+
+.modal-header h2 {
+    margin-bottom: 0;
+}
+
+/*-------------------------Error Modal Styles-------------------------*/
+.error-modal-header {
+    background-color: #fbaeae; 
+    border-bottom: 1px solid #dd6c6c;
+    color: #b30000; 
+}
+
+.modal#errorModal .modal-content {
+    background-color: #ffe6e6;
+}
+
+.modal#errorModal .btn-close {
+    color: #b30000;
+}
+
+.modal#errorModal .btn-close:hover {
+    background-color: #f08080; 
+    color: white; 
+}
+
+/*-------------------------Success Modal Styles------------------------- */
+.success-modal-header {
+    background-color: #8eb096; 
+    border-bottom: 1px solid #c3e6cb; 
+    color: #155724; 
+}
+
+.modal#successModal .modal-content {
+    background-color: #e6ffe6; 
+    color: #155724; 
+}
+
+.modal#successModal .btn-close {
+    color: #155724; 
+}
+
+
+.modal#successModal .btn-close:hover {
+    background-color: #c3e6cb; 
+    color: white; 
+}
+
+.modal#successModal .btn-secondary {
+    color: #155724; 
+    background-color: #d4edda; 
+    border: 1px solid #c3e6cb; 
+}
+
+.modal#successModal .btn-secondary:hover {
+    background-color: #c3e6cb; 
+    border: 1px solid #b3d8bb; 
+}
+
+
+/* -------------------------Logout Modal Styles -------------------------*/
+#logoutModal .modal-header {
+    background-color: #0777ff; 
+    border-bottom: 1px solid #76d1ff; 
+    color: #021d37; 
+}
+
+#logoutModal .modal-content {
+    background-color: #5398ff; 
+    color: #001c55; 
+}
+
+#logoutModal .btn-close {
+    color: #154575; 
+}
+
+#logoutModal .btn-close:hover {
+    background-color: #b5cfe0; 
+    color: white; 
+}
+
+#logoutModal .btn-secondary {
+    color: #154575; 
+    background-color: #d1e8f0; 
+    border: 1px solid #b5cfe0; 
+}
+
+#logoutModal .btn-secondary:hover {
+    background-color: #b5cfe0; 
+    border: 1px solid #a4bfe0; 
+}
+
+.modal#logoutModal .modal-body img {
+    height: 150px;
+    align-self: center;
+    justify-self: center;
+}

@@ -1,0 +1,215 @@
+
+body {
+    color: aliceblue;
+    background-image: url("/static/DreamScapes_app/images/sounds_bg.68ec06c59b41.jpg");
+    background-size: cover;
+    min-height: calc(100vh - 80px);
+    background-repeat: no-repeat;  
+    background-position: bottom center; 
+    background-attachment: fixed; 
+    height: 100vh;
+    margin: 0;
+    overflow: auto;
+}
+
+
+.row {
+    display: grid;  
+    grid-template-columns: repeat(6, 1fr); 
+    grid-template-rows: repeat(3, 1fr); 
+    gap: 16px; 
+    grid-template-rows: repeat(auto-fill, 1fr);
+}
+
+.card {
+    height: 100px;
+    width: 90px;
+    position: relative;
+    overflow: hidden;
+    background-color: transparent;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    transition: transform 0.3s;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    border: none;
+}
+
+.card-header {
+    text-align: center;
+    font-size: 12px;
+    font-weight: 600;
+    background-color: transparent;
+    padding: 5px 5px;
+    justify-content: center;
+}
+
+.card-main {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: top;
+    padding-top: 5px;
+    background-color: transparent;
+}
+
+.sound-icons {
+    max-height: 50%;
+    margin: 0 auto;
+}
+
+.main-description {
+    font-size: 12px;
+    text-align: center;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card :active {
+    transform: scale(1.25);
+}
+
+.card::before {
+    content: "";
+    display: block;
+    padding-top: 50%;
+}
+
+/* Tab Container */
+.nav-tabs {
+    background-color: transparent;
+    border-bottom: none;
+    justify-content: space-between;
+}
+
+/* Individual Tabs */
+.nav-tabs .nav-link {
+    color: aliceblue;
+    background-color: transparent;
+    border: none;
+}
+
+.nav-tabs .nav-link.active {
+    background-color: transparent;
+    border-color: transparent;
+}
+
+.tab-content {
+    background-color: transparent;
+}
+
+
+.nav.nav-tabs .nav-link {
+    background-color: transparent;
+}
+
+.active-sound {
+    background-color: #07478b6a;
+}
+
+button {
+    border-radius: 50px;
+    box-shadow: 0 1px 1px;
+    border: 1px solid #008ecf;
+    background: #092180;
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 12px 45px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+    cursor: pointer;
+}
+
+button:active {
+    transform: scale(.7);
+}
+
+button:focus {
+    outline: none;
+}
+
+button.ghost {
+    background: transparent;
+    border-color: #fff;
+}
+
+/* save mix footer*/
+.saveCurrentMix {
+    width: 100vw;  /* Set the width to 100% of the viewport width */
+    position: fixed;  /* Fix the footer to the bottom */
+    bottom: 0;
+    left: 0;
+    background-color: rgb(19,33,46);
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.2);  /* A slight shadow for a lifting effect */
+    display: flex;  /* Display the controls in a row */
+    justify-content: space-around;  /* Distribute the space between the controls equally */
+    align-items: center;  /* Center the controls vertically */
+    padding: 10px 0;
+    z-index: 2;  /* Make sure the footer appears above other content */
+}
+
+.saveCurrentMix button {
+    border-radius: 50px;
+    box-shadow: 0 1px 1px;
+    border: 1px solid #008ecf;
+    background: #092180;
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 12px 45px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+    cursor: pointer;
+}
+
+.saveCurrentMix button:hover {
+    background-color: #177fe1;
+}
+
+/* -------------------------Save Mix Modal Styles -------------------------*/
+#saveMixModal .modal-header {
+    background-color: #50788D; 
+    border-bottom: 1px solid #6a99a8;
+    color: #021d37; 
+}
+
+#saveMixModal .modal-content {
+    background-color: #6A8B97; 
+    color: #001c55; 
+}
+
+#saveMixModal .close {
+    color: #001c55; 
+}
+
+#saveMixModal .close:hover {
+    background-color: #6a99a8; 
+    color: white; 
+    border: 1px solid #6a99a8; 
+}
+
+#saveMixModal .btn-primary {
+    color: #001c55; 
+    background-color: #89abc5;
+    border: 1px solid #6a99a8; 
+}
+
+#saveMixModal .btn-primary:hover {
+    background-color: #6a99a8; 
+    border: 1px solid #598a98; 
+}
+
+.modal#saveMixModal .modal-body img {
+    height: 150px;
+    align-self: center;
+    justify-self: center;
+}

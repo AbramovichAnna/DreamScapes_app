@@ -115,35 +115,36 @@
     </button>
 </footer>
 
-
-    <!-- Save Mix Modal -->
-    <div class="modal fade" id="saveMixModal" data-bs-backdrop="static" role="dialog" data-bs-keyboard="false" tabindex="-1"
-    aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="saveMixModalLabel">Save current mix</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <img src="{% static 'DreamScapes_app/images/save_mix.png' %}" />
-                    <form method="POST" action="{% url 'save_user_mix' %}" enctype="multipart/form-data">
-                        {% csrf_token %}
-                        <input type="hidden" name="mixId" id="mixId" value="">
-                        <div class="form-group">
-                            <label for="mixTitle">Mix Title</label>
-                            <input name="mixTitle" id="mixTitle" class="form-control"
-                                placeholder="Enter title for your mix" />
-                        </div>
-                        <div id="hiddenSoundFields"></div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                            <button type="submit" class="btn btn-primary" value="saveMix">Save</button>
-                        </div>
-                    </form>
-                </div>
+<!-- Save Mix Modal -->
+<div class="modal fade" id="saveMixModal" data-bs-backdrop="static" role="dialog" data-bs-keyboard="false" tabindex="-1"
+aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="saveMixModalLabel">Save current mix</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <img src="{% static 'DreamScapes_app/images/save_mix.png' %}" />
+                <form method="POST" action="{% url 'save_user_mix' %}" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <input type="hidden" name="mixId" id="mixId" value="">
+                    <div class="form-group">
+                        <label for="mixTitle">Mix Title</label>
+                        <input name="mixTitle" id="mixTitle" class="form-control"
+                            placeholder="Enter title for your mix" />
+                    </div>
+                    <div id="hiddenSoundFields"></div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary" value="saveMix">Save</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
+</div>
 
 {% endblock %}
+
+

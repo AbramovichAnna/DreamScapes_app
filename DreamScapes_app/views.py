@@ -18,7 +18,7 @@ def sounds(request):
 def user_profile(request):
     if not request.user.is_authenticated:
         # Redirect to login page or show an error
-        return redirect('login')
+        return redirect('signup')
 
     user_mixes = UserMix.objects.filter(user=request.user)
     return render(request, 'profile.html', {'user_mixes': user_mixes})
@@ -29,12 +29,6 @@ def mixes(request):
     all_mixes = UserMix.objects.all()
     return render(request, 'mixes.html', {'mixes': all_mixes})
 
-
-    # Pass the mixes to the template context
-    # context = {
-    #     'mixes': all_mixes
-    # }
-    # return render(request, 'mixes.html', {'mixes': mixes})
 
 
 # --------------------- REGISTRATION, LOGIN, LOGOUT ---------------------

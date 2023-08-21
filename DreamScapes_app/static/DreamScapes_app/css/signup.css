@@ -1,9 +1,11 @@
 body {
-    overflow: hidden;
-    background-image: url('/static/DreamScapes_app/images/signup_bg.jpg');
+    /* overflow: hidden; */
+    background-image: url('/static/DreamScapes_app/images/signup.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: bottom center;
+    background-attachment: fixed;
+
 }
 
 
@@ -231,4 +233,3 @@ button.ghost {
     transform: translateY(20%);
 }
 
-/* waves */
