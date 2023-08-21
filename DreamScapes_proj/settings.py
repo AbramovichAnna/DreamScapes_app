@@ -79,17 +79,17 @@ WSGI_APPLICATION = "DreamScapes_proj.wsgi.application"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    # "default": {
-    #     "ENGINE": "django.db.backends.sqlite3",
-    #     "NAME": BASE_DIR / "db.sqlite3",
-    # }
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'db_dreamscapes',
-        'USER': 'anna',
-        'PASSWORD': 'fWN5Fvm5m6xX585g6deb9cJPP9k6Z3cG',
-        'HOST': 'dpg-cjg947j6fquc73btvcj0-a.oregon-postgres.render.com',      
-        'PORT': '5432',
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
+    }
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql_psycopg2',
+    #     'NAME': 'db_dreamscapes',
+    #     'USER': 'anna',
+    #     'PASSWORD': 'fWN5Fvm5m6xX585g6deb9cJPP9k6Z3cG',
+    #     'HOST': 'dpg-cjg947j6fquc73btvcj0-a.oregon-postgres.render.com',      
+    #     'PORT': '5432',
     }
 }
 
