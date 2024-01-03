@@ -2,8 +2,8 @@
 https://dreamscapes.onrender.com/
 
 DreamScapes_app
-Description
-DreamScapes is a platform where users can explore a variety of sounds. They can listen to the sounds, categorize them, and even mix multiple sounds to create their unique sound mix. Users can manage their profile, view their created mixes, and modify them as needed.
+#Description
+#DreamScapes is a platform where users can explore a variety of sounds. They can listen to the sounds, categorize them, and even mix multiple sounds to create their unique sound mix. Users can manage their profile, view their created mixes, and modify them as needed.
 
 Functions
 Browse Sounds: View all sounds and the latest sounds added. Sounds are categorized for easier navigation.
