@@ -35,5 +35,7 @@ To get started with DreamScapes on your local machine, follow these steps:
 
 5. Accessing the Application:
 Admin Credentials
+
 Username: anna
+
 Password: 1234
