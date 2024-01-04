@@ -1,7 +1,5 @@
 # DreamScapes
 
-![DreamScapes Logo](https://dreamscapes.onrender.com/static/images/logo.png)
-
 Explore the World of Sounds and Create Your Unique Mixes!
 
 **Visit the Live Site**: [DreamScapes](https://dreamscapes.onrender.com/)
